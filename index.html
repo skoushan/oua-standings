@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app='oua-app'>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min.js"></script>
+  	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="oua.js"></script>
+  	<link rel="stylesheet" href="oua.css">
+  </head>
+  <body>
+    <div ng-controller='OuaController'>
+      <select ng-model="sport" ng-init="sport = sport || sports[0].value"
+        ng-options="sport.value as sport.name for sport in sports">
+        </select>
+      <select ng-model="year" ng-init="year = year || years[0].value"
+        ng-options="year.value as year.name for year in years">
+        </select>
+      <button id='fetchbtn' class="btn" ng-click="fetch()">Fetch</button>
+      <img id="spinner" ng-src="http://m.mousebreaker.com/staticf/basetmpl/swiperbase/b/295956/images/spinner.gif" style="display:none;">
+      <table class="flat-table flat-table-3">
+        <tbody>
+          <thead>
+            <th>Rank</th>
+            <th>School</th>
+            <th>Games</th>
+          </thead>
+          <tr ng-repeat='school in data'>
+            <td>{{$index + 1}}</td>
+            <td>{{school.university.text}}</td>
+            <td>{{school['W-L']}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
